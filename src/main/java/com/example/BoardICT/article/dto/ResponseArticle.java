@@ -68,6 +68,7 @@ public class ResponseArticle {
         private String title;
         private String category;
         private String content;
+        private String writer;
 
         public static GetAllArticleDto toDto(Article article){
             return GetAllArticleDto.builder()
@@ -76,6 +77,7 @@ public class ResponseArticle {
                     .title(article.getTitle())
                     .category(article.getCategory())
                     .content(article.getContent())
+                    .writer(article.getWriter())
                     .build();
         }
     }
