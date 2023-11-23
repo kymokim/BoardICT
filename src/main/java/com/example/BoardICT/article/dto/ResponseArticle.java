@@ -81,5 +81,27 @@ public class ResponseArticle {
                     .build();
         }
     }
+
+    @Builder
+    @Getter
+    public static class GetByCategoryDto{
+        private Long id;
+        private LocalDateTime creationDate;
+        private String title;
+        private String category;
+        private String content;
+        private String writer;
+
+        public static GetByCategoryDto toDto(Article article){
+            return GetByCategoryDto.builder()
+                    .id(article.getId())
+                    .creationDate(article.getCreationDate())
+                    .title(article.getTitle())
+                    .category(article.getCategory())
+                    .content(article.getContent())
+                    .writer(article.getWriter())
+                    .build();
+        }
+    }
 }
 

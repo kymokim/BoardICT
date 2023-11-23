@@ -40,9 +40,9 @@ public class ArticleService { // 오류 던지긴 하는데 안 날라옴
 
     public List<ResponseArticle.GetAllArticleDto> getAllArticle(){
 
-        List<Article> tasks = articleRepository.findAllByOrderByFixedDateDesc();
+        List<Article> articles = articleRepository.findAllByOrderByFixedDateDesc();
         List<ResponseArticle.GetAllArticleDto> list = new ArrayList<>();
-        tasks.stream().forEach(task -> list.add(ResponseArticle.GetAllArticleDto.toDto(task)));
+        articles.stream().forEach(article -> list.add(ResponseArticle.GetAllArticleDto.toDto(article)));
         return list;
     }
 
@@ -50,6 +50,13 @@ public class ArticleService { // 오류 던지긴 하는데 안 날라옴
 
         Article article = articleRepository.findById(id).get();
         return ResponseArticle.GetArticleDto.toDto(article);
+    }
+
+    public List<ResponseArticle.GetByCategoryDto> getByCategory(String category){
+        List<Article> articles = articleRepository.findAllByCategory(category);
+        List<ResponseArticle.GetByCategoryDto> list = new ArrayList<>();
+        articles.stream().forEach(article -> list.add(ResponseArticle.GetByCategoryDto.toDto(article)));
+        return list;
     }
 
     public void updateArticle(RequestArticle.UpdateArticleDto updateArticleDto, Optional<String> token) {

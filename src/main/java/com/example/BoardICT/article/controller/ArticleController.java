@@ -55,6 +55,16 @@ public class ArticleController {
         return response;
     }
 
+    @GetMapping("/getByCategory/{category}")
+    public List<ResponseArticle.GetByCategoryDto> getByCategory(@PathVariable("category") String category){
+        List<ResponseArticle.GetByCategoryDto> response = articleService.getByCategory(category);
+//        ResponseMessage responseMessage = ResponseMessage.builder()
+//                .message("Task retrieved successfully.")
+//                .data(response)
+//                .build();
+        return response;
+    }
+
     @PutMapping("/update")
     public String updateArticle(@RequestBody RequestArticle.UpdateArticleDto requestDto, HttpServletRequest request) {
         Optional<String> token = jwtAuthTokenProvider.getAuthToken(request);
